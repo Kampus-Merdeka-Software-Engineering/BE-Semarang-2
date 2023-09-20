@@ -1,0 +1,1076 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Red Hat Display';
+}
+
+/** -------- HEADER -------- */
+/* -------- HEADER -------- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(252, 245, 235, 0.4);
+    border-style: solid;
+    border-width: 1px;
+    border-color: #895e3f;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+    transition-duration: 0.5s;
+    z-index: 2;
+}
+
+.navcount {
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+    position: relative;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 80px;
+}
+
+.navbar-left {
+    display: flex;
+}
+  
+.logo {
+    color: #23230a;
+    font-family: 'Red Hat Display';
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+.navbar-right{
+    display: flex;
+    gap: 60px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.nav-link {
+    color: #23230a;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 550;
+    font-family: 'Red Hat Display';
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    border-bottom: 2px solid transparent;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nav-active {
+    color: #23230a;
+    border-bottom: 2px solid #895e3f;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 550;
+    font-family: 'Red Hat Display';
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nav-link:hover {
+    color: #23230a;
+    border-bottom: 2px solid #895e3f;
+}
+
+.nav-active:hover {
+    color: #23230a;
+    border-bottom: 2px solid #895e3f;
+}
+
+.nav-icon {
+    display: none;
+    color: #121212;
+}
+
+@media screen and (max-width: 800px) {
+    .navbar {
+        display: block;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .logo {
+        font-size: 21px;
+        padding-left: 30px;
+    }
+    .navbar-left {
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-link,
+    .nav-active {
+        font-size: 17px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .nav-first {
+        margin-top: 20px;
+    }
+    .nav-active {
+        background: linear-gradient(90deg, #e7c5ae 0%, #fcf5eb00 100%);
+        border-top: 1px solid #895e3f;
+        border-width: 1px;
+    }
+    .nav-icon {
+        align-self: center;
+        padding-right: 30px;
+    }
+    .navbar-right {
+        display: block;
+    }
+}
+@media screen and (max-width: 800px) {
+    .navbar-right a{display: none;}
+    .navbar-left a.nav-icon {
+      float: right;
+      display: block;
+    }
+}
+@media screen and (max-width: 800px) {
+  .navbar-right.responsive {position: relative;}
+  .navbar-left.responsive .nav-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar-right.responsive a{
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+@media screen and (max-width: 400px) {
+    .logo {
+        font-size: 18px;
+        padding-left: 25px;
+    }
+    .nav-link,
+    .nav-active {
+        font-size: 16px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .nav-active {
+        background: linear-gradient(90deg, #e7c5ae 0%, #fcf5eb00 100%);
+        border-top: 1px solid #895e3f;
+        border-width: 1px;
+    }
+    .nav-icon {
+        align-self: center;
+        padding-right: 25px;
+    }
+}
+
+/** -------- MAIN CONTENT -------- */
+/* -------- SECTION 1 -------- */
+.container-kontak-s-1 {
+    background: linear-gradient(#efe4d7 0%, #efe4d7 30%, #fcf5eb 30%, #fcf5eb 100%);
+}
+
+.container-kontak-s-1-1 {
+    background-color: transparent;
+    /* background: #000; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+}
+
+.isi-kontak-s-1 {
+    background-color: transparent;
+    /* background: #000; */
+    width: 100%;
+}
+
+.fa-chevron-down {
+    position: absolute;
+    bottom: 0;
+    text-decoration: none;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px #9ad4d8;
+    animation: appearDisappear 3s infinite;
+}
+
+@keyframes appearDisappear {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/** -------- SECTION ROW1 -------- */
+main #row1 {
+    background-image: url("https://www.sooribali.com/img/site_images/soori-bali-journeys-explore-local-culture-traditional-village.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main #row1 .row1-1 {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* height: 35vh; */
+    height: 100vh;
+}
+
+main #row1 .row1-1 .col {
+    font-family: 'Red Hat Display';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 73px;
+    /* font-size: 2em; */
+}
+
+main #row1 .row1-1 .col h2 {
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    font-size: 38px;
+    text-shadow: 1px 1px 10px rgb(29, 29, 29);
+}
+
+main #row1 .row1-1 .col p {
+    margin-top: 7px;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+}
+/** -------- END SECTION ROW1 -------- */
+
+/** -------- SECTION ROW2 -------- */
+/** -------- CONTACT US -------- */
+main .contactUs {
+    /* background: linear-gradient(#0e3959 0%, #0e3959 30%, #03a9f5 30%, #03a9f5 100%); */
+    position: relative;
+    width: 100%;
+    padding: 40px 0; /* padding: 40px 100px; */
+}
+
+main .contactUs .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+main .contactUs .title h2 {
+    color: #fff;
+    font-weight: 500;
+}
+
+main .contactUs .box {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 5fr 4fr;
+    grid-template-areas: "form info" "form map";
+    grid-gap: 20px;
+    padding: 0 100px; /* margin-top: 20px; */
+}
+
+main .contactUs .box .form {
+    grid-area: form;
+}
+
+main .contactUs .box .info {
+    grid-area: info;
+}
+
+main .contactUs .box .map {
+    grid-area: map;
+}
+
+main .contactUs .box .contact {
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.15);
+}
+
+main .contactUs .box .contact h3 {
+    color: #0e3959;
+    font-weight: 500;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+/** -------- FORM -------- */
+main .contactUs .box .form .formBox {
+    position: relative;
+    width: 100%;
+}
+
+main .contactUs .box .form .formBox .row50 {
+    display: flex;
+    gap: 20px;
+}
+
+main .contactUs .box .form .formBox .inputBox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+main .contactUs .box .form .formBox .row100 .inputBox {
+    width: 100%;
+}
+
+main .contactUs .box .form .formBox .inputBox label {
+    color: #654823;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+main .contactUs .box .form .formBox .inputBox input {
+    padding: 10px;
+    font-size: 1.1em;
+    outline: none;
+    border: 1px solid;
+    border-color: #333;
+}
+
+main .contactUs .box .form .formBox .inputBox input[type="submit"]:hover {
+    background-color: #895e3f;
+}
+
+/* Chrome, Safari, Edge, Opera */
+main .contactUs .box .form .formBox .inputBox input[type=number]::-webkit-outer-spin-button,
+main .contactUs .box .form .formBox .inputBox input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+main .contactUs .box .form .formBox .inputBox input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+main .contactUs .box .form .formBox .inputBox textarea {
+    padding: 10px;
+    font-size: 1.1em;
+    outline: none;
+    border: 1px solid;
+    border-color: #333;
+    resize: none;
+    min-height: 220px;
+    margin-bottom: 10px;
+}
+
+main .contactUs .box .form .formBox .inputBox input[type="submit"] {
+    background: #8B4513;
+    color: #fff;
+    border: none;
+    font-size: 1.1em;
+    max-width: 120px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 14px 15px;
+}
+
+main .contactUs .box .form .formBox .inputBox input[type="submit"]:disabled {
+    cursor: not-allowed;
+}
+
+main .contactUs .box .form .formBox .inputBox ::placeholder {
+    color: #999;
+}
+/** -------- END FORM -------- */
+
+/** -------- INFO -------- */
+main .contactUs .box .info {
+    /* background: #0e3959; */
+    background: #efe4d7;
+}
+
+main .contactUs .box .info h3 {
+    color: #23230a;
+}
+
+main .contactUs .box .info .infoBox div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+main .contactUs .box .info .infoBox div span {
+    min-width: 40px;
+    height: 40px;
+    color: #23230a;
+    background: #fcf5eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+main .contactUs .box .info .infoBox div p {
+    color: #23230a;
+    font-size: 1.1em;
+}
+
+main .contactUs .box .info .infoBox div a {
+    color: #23230a;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+main .contactUs .box .info .infoBox .sci {
+    margin-top: 30px;
+    display: flex;
+}
+
+main .contactUs .box .info .infoBox .sci li {
+    list-style: none;
+    margin-right: 15px;
+}
+
+main .contactUs .box .info .infoBox .sci li a {
+    font-size: 2em;
+    color: #23230a;
+}
+
+main .contactUs .box .info .infoBox .sci li a:hover {
+    color: #8B4513;
+}
+/** -------- END INFO -------- */
+
+/** -------- MAP -------- */
+main .contactUs .box .map {
+    padding: 0;
+}
+
+main .contactUs .box .map iframe {
+    width: 100%;
+    height: 100%;
+}
+
+main .contactUs .box .info:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+main .contactUs .box .map iframe:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+/** -------- END MAP -------- */
+/** -------- END CONTACT US -------- */
+/**-------- END SECTION ROW2 -------- */
+/** -------- END MAIN -------- */
+
+/** -------- FOOTER -------- */
+/* -------- FOOTER -------- */
+.footer {
+    background-color: white;
+}
+
+.f-sec-0 {
+    background-color: #e8b897;
+}
+
+.f-newsletter {
+    display: block;
+    background-color: transparent;
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+}
+
+.f-newsletter-icon {
+    display: flex;
+    padding-left: 80px;
+    padding-right: 80px;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.icon-newsletter {
+    font-size: 50px;
+    color: #895e3f;
+    text-shadow: 3px 3px 1px #f1ece7;
+}
+
+.title-newsletter {
+    font-family: 'Red Hat Display';
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: #23230a;
+    padding-top: 50px;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.form-newsletter {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #895e3f;
+}
+
+.newsletter-box {
+    display: block;
+    background-color: #e7c5ae;
+    width: 34.405%;  /* width: 30%; */
+    text-align: center;
+    padding-right: 20px;
+    padding-left: 80px;
+
+}
+
+.nesletter-isi-box1 {
+    font-family: 'Red Hat Display';
+    font-size: 16px;
+    font-weight: 500;
+    color: #23230a;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.nesletter-isi-box2 {
+    font-family: 'Red Hat Display';
+    font-size: 24px;
+    font-weight: 600;
+    color: #23230a;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.input-newsletter {
+    width: 70%;
+    align-self: center;
+    padding-left: 30px;
+    padding-right: 80px;
+}
+
+.newsletter {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+    border: 1px solid #895e3f;
+    border-radius: 20px;
+    background-color: #e7c5ae;
+}
+.text-newsletter {
+    width: 100%;
+    height: 30px;
+    border-radius: 20px 0 0 20px;
+    border-width: 0;
+    background-color: #e7c5ae;
+    margin-left: 10px;
+}
+.button-newsletter {
+    width: 120px;
+    background-color: #895e3f;
+    border: none;
+    font-family: 'Red Hat Display';
+    color: #f1ece7;
+    letter-spacing: 1.2px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.button-newsletter:hover {
+    background-color: #966e52;
+    border: 1px solid #895e3f;
+}
+.button-newsletter:disabled {
+    cursor: not-allowed;
+}
+
+.text-newsletter:focus{
+    outline: none;
+}
+
+.f-sec-1 {
+    background-color: #e8b897;
+    border-top: 1px solid #895e3f;
+}
+
+.f-info {
+    display: flex;
+    background-color: transparent;
+    justify-content: space-between;
+    max-width: 1300px;
+    margin: auto;
+    padding: 15px;
+    padding-bottom: 40px;
+}
+
+.f-info-con, .f-info-con2, .f-info-con3, .f-info-con4 {
+    background-color: transparent;
+}
+
+.f-info-con {
+    padding-left: 80px;
+}
+
+.f-info-con3 {
+    width: 250px;
+}
+
+.f-info-con4 {
+    padding-right: 80px;
+}
+
+.info-logo {
+    color: #23230a;
+    font-family: 'Red Hat Display';
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    margin: 10px 0 20px; /* margin-top: 10px; */
+}
+
+.info-text {
+    color: #23230a;
+    font-family: 'Red Hat Display';
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1.1px;
+    margin: 10px 0 14px; /* margin-top: 10px; */
+}
+
+.fa-facebook-f,.fa-instagram,.fa-x-twitter,.fa-youtube {
+    text-align: center;
+    align-items: center;
+    font-size: 24px;
+    color: #23230a;
+}
+
+.sos-ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.sos-li {
+    display: inline-block;
+}
+
+.info-sos {
+    margin-right: 30px;
+}
+
+.fa-facebook-f:hover {
+    color: rgb(0, 123, 255);
+}
+
+.fa-instagram:hover {
+    color: #e843a0;
+}
+
+.fa-x-twitter:hover {
+    color: rgb(0, 0, 0);
+}
+
+.fa-youtube:hover {
+    color: rgb(242, 0, 0);
+}
+
+.info-menu-list {
+    list-style: none;
+    columns: 2;
+    padding: 0;
+    margin-top: 0;
+}
+
+.info-li {
+    margin-right: 30px;
+}
+
+.info-menu {
+    color: #23230a;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Red Hat Display';
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    line-height: 3;
+}
+
+.info-3-text {
+    color: #23230a;
+    font-family: 'Red Hat Display';
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin: 14px 0;
+}
+
+.info-3-text2 {
+    color: #23230a;
+    font-family: 'Red Hat Display';
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin: 12px 0;
+}
+
+.info-4-text {
+    color: #23230a;
+    font-family: 'Red Hat Display';
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin-left: 10px;
+    margin: 14px 0 14px 10px; /* margin: 15px 0; */
+}
+
+.ps-store {
+    max-width: 120px;
+    height: auto;
+}
+
+.as-store {
+    max-width: 120px;
+    height: auto;
+}
+
+.f-sec-2 {
+    background-color: #895e3f;
+}
+
+.f-cpr {
+    background-color: transparent;
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+}
+
+.f-cpr-con {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 80px;
+}
+
+.cpr {
+    font-family: 'Red Hat Display';
+    color: #e6d5ca;
+    font-size: 14px;
+}
+
+.tnc-plcy {
+    display: flex;
+    gap: 50px;
+}
+
+.tnc, .plcy {
+    text-decoration: none;
+    font-family: 'Red Hat Display';
+    color: #e6d5ca;
+    font-size: 14px;
+}
+
+.tnc:hover, .plcy:hover {
+    color: #e7c5ae;
+}
+
+/** RESPONSIVE FOOTER */
+@media screen and (max-width: 800px) {
+    .title-newsletter {
+        padding: 30px 30px;
+        font-size: 14px;
+    }
+    .f-newsletter-icon {
+        gap: 40px;
+        margin-top: 0;
+        margin-bottom: 30px;
+        padding: 0;
+    }
+    .icon-newsletter {
+        font-size: 35px;
+    }
+    .form-newsletter {
+        flex-direction: column;
+    }
+    .newsletter-box {
+        width: 100%;
+        padding: 0;
+    }
+    .input-newsletter {
+        padding: 20px 0;
+        width: 60%;
+    }
+    .nesletter-isi-box1 {
+        font-size: 14px;
+    }
+    .nesletter-isi-box2 {
+        font-size: 20px;
+    }
+    .text-newsletter {
+        height: auto;
+        font-size: 14px;
+    }
+    .button-newsletter {
+        width: auto;
+        font-size: 11px;
+    }
+    .f-info {
+        flex-direction: column;
+        padding: 40px;
+    }
+    .f-info-con {
+        padding: 0;
+    }
+    .info-logo {
+        font-size: 20px;
+    }
+    .info-text {
+        font-size: 15px;
+    }
+    .info-sos {
+        margin-right: 25px;
+    }
+    .f-info-con2 {
+        margin-top: 15px;
+    }
+    .info-menu-list {
+        columns: 1;
+    }
+    .info-menu {
+        font-size: 15px;
+    }
+    .info-3-text {
+        font-size: 15px;
+    }
+    .info-3-text2 {
+        font-size: 13px;
+        font-weight: 500;
+    }
+    .info-4-text {
+        margin-left: 0;
+        font-size: 15px;
+    }
+    .as-store,
+    .ps-store {
+        max-width: 100px;
+    }
+    .f-cpr-con {
+        flex-direction: column;
+        padding: 20px 15px;
+        align-items: center;
+        gap: 10px;
+    }
+    .cpr,
+    .tnc,
+    .plcy {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .title-newsletter {
+        padding: 30px 30px;
+        font-size: 14px;
+    }
+    .f-newsletter-icon {
+        gap: 40px;
+        margin-top: 0;
+        margin-bottom: 30px;
+        padding: 0;
+    }
+    .icon-newsletter {
+        font-size: 35px;
+    }
+    .input-newsletter {
+        padding: 20px 0;
+        width: 90%;
+    }
+    .nesletter-isi-box1 {
+        font-size: 12px;
+    }
+    .nesletter-isi-box2 {
+        font-size: 18px;
+    }
+    .text-newsletter {
+        height: auto;
+    }
+    .button-newsletter {
+        width: 90px;
+        font-size: 10px;
+    }
+    .f-info {
+        flex-direction: column;
+        padding: 15px;
+    }
+    .info-logo {
+        font-size: 18px;
+    }
+    .info-text {
+        font-size: 14px;
+    }
+    .info-menu {
+        font-size: 14px;
+    }
+    .info-3-text {
+        font-size: 14px;
+    }
+    .info-3-text2 {
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .info-4-text {
+        margin-left: 0;
+        font-size: 14px;
+    }
+    .cpr,
+    .tnc,
+    .plcy {
+        font-size: 12px;
+    }
+}
+/** -------- END FOOTER -------- */
+
+/** -------- RESPONSIVE BREAKPOINT -------- */
+/* -------- RESPONSIVE MAIN CONTENT -------- */
+@media screen and (max-width: 991px) {
+    main .contactUs {
+        /* padding: 20px; */
+        padding: 10px;
+    }
+
+    main #row1 .row1-1 .col {
+        font-size: 1.5em;
+    }
+
+    main .contactUs .box {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "form" "info" "map";
+        /* padding: 0; */
+    }
+
+    main .contactUs .box .map {
+        min-height: 300px;
+        padding: 0;
+    }
+
+    main .contactUs .box .form .formBox .row50 {
+        display: flex;
+        gap: 0;
+        flex-direction: column;
+    }
+
+    main .contactUs .box .form .formBox .inputBox {
+        width: 100%;
+    }
+
+    main .contactUs .box .contact {
+        padding: 30px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    main #row1 .row1-1 .col h2 {
+        text-align: center;
+        font-size: 28px;
+    }
+
+    main #row1 .row1-1 .col p {
+        text-align: center;
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 600px) {
+    main #row1 .row1-1 .col h2 {
+        text-align: center;
+        font-size: 24x;
+    }
+
+    main #row1 .row1-1 .col p {
+        text-align: center;
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:450px) {
+    main #row1 .row1-1 .col h2 {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    main #row1 .row1-1 .col p {
+        text-align: center;
+        font-size: 14px;
+    }
+}
+@media screen and (max-width:400px) {
+    main #row1 .row1-1 .col h2 {
+        text-align: center;
+        font-size: 22px;
+    }
+
+    main #row1 .row1-1 .col p {
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    main .contactUs {
+        padding: 20px 0;
+    }
+    
+    main .contactUs .box {
+        padding: 0 15px;
+    }
+
+    main .contactUs .box .contact h3 {
+        font-size: 1.1em;
+    }
+
+    main .contactUs .box .form .formBox .inputBox label {
+        font-size: 0.9em;
+    }
+
+    main .contactUs .box .form .formBox .inputBox input {
+        font-size: 0.8em;
+    }
+
+    main .contactUs .box .form .formBox .inputBox input[type="submit"] {
+        max-width: 100%;
+        font-size: 1em;
+    }
+}
+/* -------- END RESPONSIVE MAIN CONTENT -------- */
+
+/** -------- END RESPONSIVE BREAKPOINT -------- */

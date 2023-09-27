@@ -32,7 +32,7 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 // db.contacts = require('./contactModel')(sequelize, DataTypes)
-// db.newsletter = require('./newsletterModel')(sequelize, DataTypes)
+db.newsletter = require('./newsletterModel')(sequelize, DataTypes)
 // db.review = require('./reviewModel')(sequelize, DataTypes)
 
 db.sequelize.sync({ force: false })

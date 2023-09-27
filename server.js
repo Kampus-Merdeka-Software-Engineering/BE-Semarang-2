@@ -17,6 +17,11 @@ app.use((req, res, next) => {
     next();
 });
 
+/* Routers API */
+const routerNewsletter = require('./routes/newsletterRoute')
+
+app.use('/api/newsletters', routerNewsletter)
+
 /* ENDPOINTS */
 /* Endpoint Home */
 app.get('/', (req, res) => {

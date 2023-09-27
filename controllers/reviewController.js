@@ -1,5 +1,6 @@
 const db = require('../models')
 const { body, validationResult, check } = require("express-validator");
+const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 
 /* create main Model */

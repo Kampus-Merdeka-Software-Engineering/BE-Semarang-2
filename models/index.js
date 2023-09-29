@@ -35,6 +35,7 @@ db.contacts = require('./contactModel')(sequelize, DataTypes)
 db.newsletter = require('./newsletterModel')(sequelize, DataTypes)
 db.review = require('./reviewModel')(sequelize, DataTypes)
 db.products = require('./productModel')(sequelize, DataTypes)
+db.medias = require('./mediaModel')(sequelize, DataTypes)
 
 db.sequelize.sync({ force: false })
 .then(() => {

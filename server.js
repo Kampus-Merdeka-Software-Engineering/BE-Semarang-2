@@ -20,11 +20,13 @@ app.use((req, res, next) => {
 /* Routers API */
 const routerContact = require('./routes/contactRoute')
 const routerNewsletter = require('./routes/newsletterRoute')
-const routerReview = require('./routes/reviewRoute');
+const routerReview = require('./routes/reviewRoute')
+const routerProduct = require('./routes/productRoute');
 
 app.use('/api/contacts', routerContact)
 app.use('/api/newsletters', routerNewsletter)
-app.use('/api/reviews', routerReview);
+app.use('/api/reviews', routerReview)
+app.use('/api/products', routerProduct);
 
 /* ENDPOINTS */
 /* Endpoint Home */

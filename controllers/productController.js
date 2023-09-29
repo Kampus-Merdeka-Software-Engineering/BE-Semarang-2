@@ -19,10 +19,9 @@ const createProduct = async (req, res) => {
 
         const productName = req.body.productName;
         const productPrice = req.body.productPrice;
-        const productRate = req.body.productRate;
         const productCategory = req.body.productCategory;
 
-        const newProduct = await Product.create({ productName, productPrice, productRate, productCategory, image });
+        const newProduct = await Product.create({ productName, productPrice, productCategory, image });
 
         fs.unlinkSync(req.file.path);
 
@@ -50,7 +49,6 @@ const getAllProducts = async (req, res) => {
                 id: product.id,
                 productName: product.productName,
                 productPrice: product.productPrice,
-                productRate: product.productRate,
                 productCategory: product.productCategory,
                 image: imageData
             };
@@ -98,7 +96,6 @@ const getProductByCategory = async (req, res) => {
                 id: product.id,
                 productName: product.productName,
                 productPrice: product.productPrice,
-                productRate: product.productRate,
                 productCategory: product.productCategory,
                 image: imageData // Mengirimkan gambar dalam format base64
             };
@@ -123,7 +120,6 @@ const updateProduct = async (req, res) => {
 
         const productName = req.body.productName;
         const productPrice = req.body.productPrice;
-        const productRate = req.body.productRate;
         const productCategory = req.body.productCategory;
 
         const product = await Product.findOne({ where: { id } });
@@ -132,7 +128,7 @@ const updateProduct = async (req, res) => {
             return res.status(200).json({ message: 'Tidak dapat melakukan update, karena data tidak ditemukan' });
         } else {
             await Product.update(
-                { productName, productPrice, productRate, productCategory, image },
+                { productName, productPrice, productCategory, image },
                 { where: { id } }
             );
 

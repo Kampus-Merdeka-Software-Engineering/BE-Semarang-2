@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        productRate: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
         image: {
             type: DataTypes.BLOB('long'),
             allowNull: false

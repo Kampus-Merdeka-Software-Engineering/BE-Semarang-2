@@ -8,7 +8,16 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 
+const corsOptions = {
+    origin: ['https://kampus-merdeka-software-engineering.github.io', 'http://127.0.0.1:5500'],
+    methods: 'GET,POST',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    allowedHeaders: 'Content-Type',
+};
+
 /* Middleware */
+app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

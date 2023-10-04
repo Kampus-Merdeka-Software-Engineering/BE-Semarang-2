@@ -5,6 +5,7 @@ require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 
 /* create main Model */
 const Review = db.review
+const Newsletter = db.newsletter
 
 /* Validate email new Review */
 const validateEmailReview = [
@@ -55,11 +56,18 @@ const createReview = async (req, res) => {
             return res.status(400).json({ error: 'Validation error' });
         }
 
-        const review = await Review.create({
-            email, name, message
-        });
+        const checkEmail = await Newsletter.findOne({ where: { email } })
 
-        return res.status(200).json({ message: 'Review created successfully', data: review });
+        // Jika data ditemukan, ambil ID-nya
+        if (!checkEmail) {
+            return res.status(400).json({ error: 'Email Anda tidak terdaftar, silahkan bergabung dengan kami di Newsletter' });
+        } else {
+            const id_newsletter = checkEmail.id;
+            const review = await Review.create({
+                name, message, id_newsletter
+            });
+            return res.status(200).json({ message: 'Review created successfully', data: review });
+        }
     } catch (error) {
         console.error('error:', error);
         return res.status(500).json({ error: 'Internal server error' });
@@ -86,7 +94,7 @@ const getAllReview = async (req, res) => {
 const getOneReview = async (req, res) => {
     try {
         const id = req.params.id
-        const review = await Review.findOne({ where: { id: id } })
+        const review = await Review.findOne({ where: { id } })
 
         if (!review) {
             return res.status(200).json({ message: 'Data tidak ditemukan' });
@@ -109,13 +117,13 @@ const updateReview = async (req, res) => {
             return res.status(400).json({ error: 'Validation error' });
         } else {
             const id = req.params.id
-            const review = await Review.findOne({ where: { id: id } });
+            const review = await Review.findOne({ where: {id } });
 
             if (!review) {
                 return res.status(200).json({ message: 'Tidak dapat melakukan update, karena data tidak ditemukan' });
             }
 
-            const updatedReview = await Review.update(req.body, { where: { id: id } });
+            const updatedReview = await Review.update(req.body, { where: { id } });
 
             return res.status(200).json({ message: 'Newsletter updated successfully', data: updatedReview });
         }
@@ -131,13 +139,13 @@ const deleteReview = async (req, res) => {
     try {
         const id = req.params.id
 
-        const review = await Review.findOne({ where: { id: id } });
+        const review = await Review.findOne({ where: { id } });
 
         if (!review) {
             return res.status(200).json({ message: 'Tidak dapat melakukan delete, karena data tidak ditemukan' });
         }
 
-        await Review.destroy({ where: { id: id } })
+        await Review.destroy({ where: { id } })
         res.status(200).send('Review is deleted !')
     } catch (error) {
         console.error('error:', error);

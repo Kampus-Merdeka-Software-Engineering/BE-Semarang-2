@@ -31,7 +31,7 @@ const createNewsletter = async (req, res) => {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            return res.status(400).json({ error: 'Validation error' });
+            return res.status(400).json({ error: 'Email invalid!' });
         }
 
         /* Check for duplicates based on email*/

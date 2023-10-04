@@ -42,4 +42,15 @@ db.sequelize.sync({ force: false })
     console.log("Database & tables created") 
 })
 
+// 1 to Many Relation
+db.newsletter.hasMany(db.review, {
+    foreignKey : "id_newsletter",
+    as: 'review'
+})
+
+db.review.belongsTo(db.newsletter, {
+    foreignKey : "id_newsletter",
+    as: 'newsletter'
+})
+
 module.exports = db

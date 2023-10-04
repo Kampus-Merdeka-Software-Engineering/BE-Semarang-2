@@ -8,9 +8,46 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 
+const corsOptions = {
+    origin: ['https://kampus-merdeka-software-engineering.github.io', 'http://127.0.0.1:5500'],
+    methods: 'GET,POST',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    allowedHeaders: 'Content-Type',
+};
+
 /* Middleware */
+app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use([
+    body('firstName').escape(),
+    body('lastName').escape(),
+    body('email').escape(),
+    body('noHp').escape(),
+    body('message').escape(),
+    body('emailNewsLetter').escape(),
+    body('noHPValue').escape(),
+    body('name').escape(),
+]);
+
+/* Use CSP */
+app.use(helmet());
+
+/* Set Content Security Policy */
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", 'fonts.googleapis.com', 'kit.fontawesome.com', "'unsafe-inline'"],
+        fontSrc: ['fonts.gstatic.com', 'ka-f.fontawesome.com'],
+        // scriptSrc: ["'self'", 'https://kit.fontawesome.com', 'https://unpkg.com'],
+        scriptSrc: ["'self'", 'https://kit.fontawesome.com', 'https://unpkg.com', 'https://cdn.jsdelivr.net', 'https://www.google.com'],
+        imgSrc: ["'self'", 'www.google.com', 'www.sooribali.com', 'https://unpkg.com'],
+        connectSrc: ["'self'", 'fonts.googleapis.com', 'ka-f.fontawesome.com', 'https://unpkg.com'],
+        frameSrc: ["'self'", 'https://www.google.com/'],
+    }
+}));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

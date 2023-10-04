@@ -1,5 +1,8 @@
 const db = require('../models')
 const { body, validationResult, check } = require("express-validator");
+const axios = require('axios');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 
 // create main Model
 const Contact = db.contacts
@@ -13,13 +16,31 @@ const validateContact = [
 
 // 1. create contact
 const createContact = async (req, res) => {
-    const { firstName, lastName, email, message, noHp } = req.body;
+    const { firstName, lastName, email, message, captchaResponse } = req.body;
+    let noHp = req.body.noHp
 
     try {
         const errors = validationResult(req);
 
+        /* Verify reCAPTCHA */
+        const secretKey = process.env.CONTACT_RECAPTCHA_SECRET_KEY;
+        const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaResponse}`;
+
+        const response = await axios.post(verifyUrl);
+        const body = response.data;
+
+        // console.log(captchaResponse);
+        if (body.success !== undefined && !body.success) {
+            return res.json({ success: false, message: 'Failed reCAPTCHA verification' });
+        }
+
         if (!errors.isEmpty()) {
             return res.status(400).json({ error: 'Email invalid!' });
+        }
+
+        /* Continue processing the form data */
+        if (noHp === '') {
+            noHp = null;
         }
 
         const newContact = await Contact.create({
@@ -30,7 +51,8 @@ const createContact = async (req, res) => {
             message,
         });
 
-        return res.status(200).json({ message: 'Contact created successfully' });
+        return res.status(201).json({ message: 'Contact created successfully' });
+        // return res.json({ success: true, message: 'reCAPTCHA verified successfully' });
     } catch (error) {
         console.error('error:', error);
         return res.status(500).json({ error: 'Internal server error' });
@@ -83,6 +105,10 @@ const updateContact = async (req, res) => {
 
             if (!contact) {
                 return res.status(200).json({ message: 'Tidak dapat melakukan update, karena data tidak ditemukan' });
+            }
+
+            if (req.body.noHp === '') {
+                req.body.noHp = null;
             }
 
             const updatedContact = await Contact.update(req.body, { where: { id } });

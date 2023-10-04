@@ -1,5 +1,6 @@
 const db = require('../models')
 const { body, validationResult, check } = require("express-validator");
+const axios = require('axios');
 const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 
@@ -47,7 +48,7 @@ const reviewsJSON = JSON.stringify(staticReviews);
 
 /* 1. create Review */
 const createReview = async (req, res) => {
-    const { email, name, message } = req.body;
+    const { email, name, message, captchaResponse } = req.body;
 
     try {
         const errors = validationResult(req);
@@ -56,6 +57,19 @@ const createReview = async (req, res) => {
             return res.status(400).json({ error: 'Validation error' });
         }
 
+        // Verify reCAPTCHA
+        const secretKey = process.env.REVIEW_RECAPTCHA_SECRET_KEY;
+        const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaResponse}`;
+
+        const response = await axios.post(verifyUrl);
+        const body = response.data;
+
+        // console.log(captchaResponse);
+        if (body.success !== undefined && !body.success) {
+            return res.json({ success: false, message: 'Failed reCAPTCHA verification' });
+        }
+
+        /* Continue processing the form data */
         const checkEmail = await Newsletter.findOne({ where: { email } })
 
         // Jika data ditemukan, ambil ID-nya
@@ -66,7 +80,7 @@ const createReview = async (req, res) => {
             const review = await Review.create({
                 name, message, id_newsletter
             });
-            return res.status(200).json({ message: 'Review created successfully', data: review });
+            return res.status(201).json({ message: 'Review created successfully', data: review });
         }
     } catch (error) {
         console.error('error:', error);

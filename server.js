@@ -11,6 +11,7 @@ require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 const corsOptions = {
     origin: ['https://kampus-merdeka-software-engineering.github.io', 'http://127.0.0.1:5500'],
     methods: 'GET,POST',
+    credentials: true,
     preflightContinue: false,
     optionsSuccessStatus: 204,
     allowedHeaders: 'Content-Type',
@@ -41,13 +42,17 @@ app.use(helmet.contentSecurityPolicy({
         defaultSrc: ["'self'"],
         styleSrc: ["'self'", 'fonts.googleapis.com', 'kit.fontawesome.com', "'unsafe-inline'"],
         fontSrc: ['fonts.gstatic.com', 'ka-f.fontawesome.com'],
-        // scriptSrc: ["'self'", 'https://kit.fontawesome.com', 'https://unpkg.com'],
-        scriptSrc: ["'self'", 'https://kit.fontawesome.com', 'https://unpkg.com', 'https://cdn.jsdelivr.net', 'https://www.google.com'],
+        scriptSrc: ["'self'", 'https://kit.fontawesome.com', 'https://unpkg.com'],
         imgSrc: ["'self'", 'www.google.com', 'www.sooribali.com', 'https://unpkg.com'],
         connectSrc: ["'self'", 'fonts.googleapis.com', 'ka-f.fontawesome.com', 'https://unpkg.com'],
         frameSrc: ["'self'", 'https://www.google.com/'],
     }
 }));
+
+// app.use(helmet({
+//     contentSecurityPolicy: false, // Nonaktifkan default CSP untuk mengaktifkan csrfProtection
+//     csrfProtection: true
+// }));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

@@ -2,7 +2,7 @@ const db = require('../models')
 const { body, validationResult, check } = require("express-validator");
 const { Op } = require('sequelize')
 
-// create main Model
+/* create main Model */
 const Newsletter = db.newsletter
 
 /* Validate new Newsletter */
@@ -21,9 +21,9 @@ const checkDuplicateUpdateNewsletter = async (email, excludedId) => {
     return newsletter;
 };
 
-// main work
+/* main work */
 
-// 1. create Newsletter
+/* 1. create Newsletter */
 const createNewsletter = async (req, res) => {
     const email = req.body.email;
 
@@ -44,15 +44,14 @@ const createNewsletter = async (req, res) => {
         /* Continue the process of saving data to the database*/
         const newNewsletter = await Newsletter.create({ email });
 
-        return res.status(200).json({ message: 'Newsletter created successfully', data: newNewsletter });
+        return res.status(201).json({ message: 'Newsletter created successfully', data: newNewsletter });
     } catch (error) {
         console.error('error:', error);
         return res.status(500).json({ error: 'Internal server error' });
     }
 };
 
-// 2. get all Newsletters
-
+/* 2. get all Newsletters */
 const getAllNewsletters = async (req, res) => {
     try {
         const newsletters = await Newsletter.findAll({})
@@ -68,8 +67,7 @@ const getAllNewsletters = async (req, res) => {
     }
 }
 
-// 3. get single Newsletters
-
+/* 3. get single Newsletters */
 const getOneNewsletter = async (req, res) => {
     try {
         const id = req.params.id
@@ -87,7 +85,7 @@ const getOneNewsletter = async (req, res) => {
 
 }
 
-// 4. update Newsletter
+/* 4. update Newsletter */
 
 const updateNewsletter = async (req, res) => {
     const errors = validationResult(req);
@@ -130,8 +128,7 @@ const updateNewsletter = async (req, res) => {
     }
 }
 
-// 5. delete Newsletter by id
-
+/* 5. delete Newsletter by id */
 const deleteNewsletter = async (req, res) => {
     try {
         const id = req.params.id

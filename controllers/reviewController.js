@@ -64,7 +64,7 @@ const createReview = async (req, res) => {
         const response = await axios.post(verifyUrl);
         const body = response.data;
 
-        // console.log(captchaResponse);
+        console.log(captchaResponse);
         if (body.success !== undefined && !body.success) {
             return res.json({ success: false, message: 'Failed reCAPTCHA verification' });
         }
@@ -273,8 +273,8 @@ const getReviews = async (req, res) => {
             if (results.length === 0) {
                 continueProcessing = false;
                 // res.json("No more candidates to analyze.");
-                // return res.json(JSON.parse(reviewsJSON)); /* mengonversi data dari JSON kembali ke objek JavaScript */
-                return res.status(200).json(JSON.parse(reviewsJSON)); /* mengonversi data dari JSON kembali ke objek JavaScript */
+                // return res.json(JSON.parse(reviewsJSON)); /* convert data dari JSON kembali ke objek JavaScript */
+                return res.status(200).json(JSON.parse(reviewsJSON)); /* convert data dari JSON kembali ke objek JavaScript */
             }
 
             for (let i = 0; i <= results.length - 1; i++) {
@@ -285,7 +285,7 @@ const getReviews = async (req, res) => {
 
                 if (lowestScoreIndex !== -1) {
                     dataNoSend.push(currentResult);
-                    // return res.json(JSON.parse(reviewsJSON)); /* mengonversi data dari JSON kembali ke objek JavaScript */
+                    // return res.json(JSON.parse(reviewsJSON)); /* convert data dari JSON kembali ke objek JavaScript */
                 } else {
                     dataToSend.push(currentResult);
                 }
@@ -316,7 +316,7 @@ const getReviews = async (req, res) => {
         // console.log(dataToSend.length);
     } catch (error) {
         console.error("Error get Reviews:", error);
-        return res.json(JSON.parse(reviewsJSON)); /* mengonversi data dari JSON kembali ke objek JavaScript */
+        return res.json(JSON.parse(reviewsJSON)); /* convert data dari JSON kembali ke objek JavaScript */
         // throw error;
     }
 };

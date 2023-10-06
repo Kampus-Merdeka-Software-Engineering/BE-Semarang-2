@@ -4,7 +4,7 @@ const axios = require('axios');
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 
-// create main Model
+/* create main Model */
 const Contact = db.contacts
 
 /* Validate email contact */
@@ -12,9 +12,9 @@ const validateContact = [
     check("email", "Email invalid!").isEmail().trim().escape().normalizeEmail()
 ];
 
-// main work
+/* main work */
 
-// 1. create contact
+/* 1. create contact */
 const createContact = async (req, res) => {
     const { firstName, lastName, email, message, captchaResponse } = req.body;
     let noHp = req.body.noHp
@@ -29,7 +29,7 @@ const createContact = async (req, res) => {
         const response = await axios.post(verifyUrl);
         const body = response.data;
 
-        // console.log(captchaResponse);
+        console.log(response);
         if (body.success !== undefined && !body.success) {
             return res.json({ success: false, message: 'Failed reCAPTCHA verification' });
         }
@@ -59,7 +59,7 @@ const createContact = async (req, res) => {
     }
 };
 
-// 2. get all contacts
+/* 2. get all contacts */
 const getAllContacts = async (req, res) => {
     try {
         const contacts = await Contact.findAll({})
@@ -75,7 +75,7 @@ const getAllContacts = async (req, res) => {
     }
 }
 
-// 3. get single contacts
+/* 3. get single contacts */
 const getOneContact = async (req, res) => {
     try {
         const id = req.params.id
@@ -92,7 +92,7 @@ const getOneContact = async (req, res) => {
     }
 }
 
-// 4. update contact
+/* 4. update contact */
 const updateContact = async (req, res) => {
     const errors = validationResult(req);
 
@@ -121,7 +121,7 @@ const updateContact = async (req, res) => {
     }
 }
 
-// 5. delete contact by id
+/* 5. delete contact by id */
 const deleteContact = async (req, res) => {
     try {
         const id = req.params.id

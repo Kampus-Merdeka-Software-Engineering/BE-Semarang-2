@@ -6,7 +6,7 @@ const rateLimit = require('express-rate-limit');
 // Konfigurasi Rate Limiting
 const limiter = rateLimit({
     windowMs: 60 * 1000, // 1 minute
-    max: 10, // Maximum 2 requests per time window
+    max: 10, // Maximum 10 requests per time window
     message: 'Too many requests from this IP address, please try again later.',
 });
 

@@ -37,7 +37,8 @@ db.review = require('./reviewModel')(sequelize, DataTypes)
 db.products = require('./productModel')(sequelize, DataTypes)
 db.medias = require('./mediaModel')(sequelize, DataTypes)
 
-db.sequelize.sync({ force: false })
+// db.sequelize.sync({ force: false })
+db.sequelize.sync({ force: true })
 .then(() => {
     console.log("Database & tables created") 
 })

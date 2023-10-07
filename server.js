@@ -4,7 +4,7 @@ const cors = require('cors')
 const helmet = require('helmet');
 const app = express()
 const { body, validationResult, check } = require("express-validator");
-const cookieParser = require('cookie-parser')
+const morgan = require('morgan')
 const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '/', '.env') })
 
@@ -21,6 +21,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(morgan('combined'))
 
 app.use([
     body('firstName').escape(),

@@ -172,7 +172,7 @@ const deleteReview = async (req, res) => {
 const fetchReviewsFromDatabase = async () => {
     try {
         const results = await Review.findAll({
-            order: [['id', 'DESC']],
+            order: [['createdAt', 'DESC']],
             limit: 5,
         });
         return results;

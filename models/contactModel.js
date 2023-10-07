@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const Contact = sequelize.define('contact', {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            allowNull: false,
+            primaryKey: true,
+        },
         firstName: {
             type: DataTypes.STRING,
             allowNull: false

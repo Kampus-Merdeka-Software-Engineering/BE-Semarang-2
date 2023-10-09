@@ -220,8 +220,8 @@ const analyzeReviews = async (result) => {
     }
 };
 
-/* 9. find review based on label negative and lowest score */
-const findIndexLowestNegativeScore = (sentimentResults) => {
+/* 9. find review based on label negative, label neutral and lowest score */
+const findIndexLowestNegativeNeutralScore = (sentimentResults) => {
     console.log('sentimentResults:', sentimentResults);
 
     try {
@@ -240,7 +240,7 @@ const findIndexLowestNegativeScore = (sentimentResults) => {
         // Find the index of the candidate with the negative label
         // Mencari nilai yang mengandung label negative
         const lowestScoreIndex = labelWithHighestScore.findIndex(
-            item => item.label === "negative"
+            item => item.label === "negative" || item.label === "neutral"
         );
 
         return lowestScoreIndex;
@@ -281,7 +281,7 @@ const getReviews = async (req, res) => {
                 const currentResult = results[i];
 
                 const sentimentResults = await analyzeReviews(currentResult);
-                const lowestScoreIndex = findIndexLowestNegativeScore(sentimentResults)
+                const lowestScoreIndex = findIndexLowestNegativeNeutralScore(sentimentResults)
 
                 if (lowestScoreIndex !== -1) {
                     dataNoSend.push(currentResult);

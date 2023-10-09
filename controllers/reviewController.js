@@ -173,7 +173,7 @@ const fetchReviewsFromDatabase = async () => {
     try {
         const results = await Review.findAll({
             order: [['createdAt', 'DESC']],
-            limit: 5,
+            limit: 10,
         });
         return results;
     } catch (error) {

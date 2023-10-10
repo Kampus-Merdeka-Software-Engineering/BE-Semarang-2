@@ -37,7 +37,7 @@ app.use([
 /* Use CSP */
 app.use(helmet());
 
-/* Set Content Security Policy */
+/* Set Content Security Policy while use ejs */
 app.use(helmet.contentSecurityPolicy({
     directives: {
         defaultSrc: ["'self'"],
@@ -49,11 +49,6 @@ app.use(helmet.contentSecurityPolicy({
         frameSrc: ["'self'", 'https://www.google.com/'],
     }
 }));
-
-// app.use(helmet({
-//     contentSecurityPolicy: false, // Nonaktifkan default CSP untuk mengaktifkan csrfProtection
-//     csrfProtection: true
-// }));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

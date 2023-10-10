@@ -29,7 +29,9 @@ const createContact = async (req, res) => {
         const response = await axios.post(verifyUrl);
         const body = response.data;
 
+        /* give console because sometimes captcha not working if it didn't get called */
         console.log(response);
+        
         if (body.success !== undefined && !body.success) {
             return res.json({ success: false, message: 'Failed reCAPTCHA verification' });
         }

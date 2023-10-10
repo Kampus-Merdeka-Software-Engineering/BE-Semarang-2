@@ -22,4 +22,4 @@ Berikut tim pengembangan Creatopia
 6. Siti Rohmah ( Quality Assurance)
 
 ## Link
-Github pages : https://kampus-merdeka-software-engineering.github.io/front-end-capstone-project-section-semarang-group-2/
+Github pages : https://kampus-merdeka-software-engineering.github.io/FE-Semarang-2/

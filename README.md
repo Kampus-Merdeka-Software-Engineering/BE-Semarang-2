@@ -16,7 +16,7 @@ Tim kami merupakan bagian dari Group 2 section Semarang KM AUG23, MSIB ( RevoU x
 Berikut tim pengembangan Creatopia
 1. Ana Setyaningrum ( Project Leader )
 2. Putri Cahya Maulina ( Frontend Engineer )
-3. Numan Hakim ( Frontend Engineer )
+3. Nu'Man Hakim ( Frontend Engineer )
 4. Diva Ahmad Maulana ( Backend Engineer)
 5. Marwah Nur Shafira ( Backend Engineer)
 6. Siti Rohmah ( Quality Assurance)

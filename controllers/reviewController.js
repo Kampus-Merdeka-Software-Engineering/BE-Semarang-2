@@ -57,14 +57,16 @@ const createReview = async (req, res) => {
             return res.status(400).json({ error: 'Validation error' });
         }
 
-        // Verify reCAPTCHA
+        /* Verify reCAPTCHA */
         const secretKey = process.env.REVIEW_RECAPTCHA_SECRET_KEY;
         const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaResponse}`;
 
         const response = await axios.post(verifyUrl);
         const body = response.data;
 
+        /* give console because sometimes captcha not working if it didn't get called */
         console.log(captchaResponse);
+
         if (body.success !== undefined && !body.success) {
             return res.json({ success: false, message: 'Failed reCAPTCHA verification' });
         }
@@ -72,7 +74,7 @@ const createReview = async (req, res) => {
         /* Continue processing the form data */
         const checkEmail = await Newsletter.findOne({ where: { email } })
 
-        // Jika data ditemukan, ambil ID-nya
+        /* Jika data ditemukan, ambil ID-nya */
         if (!checkEmail) {
             return res.status(400).json({ error: 'Email Anda tidak terdaftar, silahkan bergabung dengan kami di Newsletter' });
         } else {
@@ -183,7 +185,6 @@ const fetchReviewsFromDatabase = async () => {
 };
 
 /* 7. fetch Sentiment From API */
-/* pakai fetch membutuhkan waktu paling lama +- 2s dan paling cepat +1000 ms untuk 5 data, 39 data membutuhkan waktu paling lama 12s */
 const fetchSentimentFromAPI = async (data) => {
     try {
         const response = await fetch(
@@ -208,10 +209,10 @@ const analyzeReviews = async (result) => {
     try {
         const message = result.message;
 
-        // Prepare data for API request
+        /* Prepare data for API request */
         const data = [{ text: message }];
 
-        // Sending request to Hugging Face API
+        /* Sending request to Hugging Face API */
         const sentimentResults = await fetchSentimentFromAPI(data);
         return sentimentResults;
     } catch (error) {
@@ -222,23 +223,24 @@ const analyzeReviews = async (result) => {
 
 /* 9. find review based on label negative, label neutral and lowest score */
 const findIndexLowestNegativeNeutralScore = (sentimentResults) => {
-    console.log('sentimentResults:', sentimentResults);
+    /* give console because sometimes we hit a limit when using the Inference API with a free account */
+    // console.log('sentimentResults:', sentimentResults);
 
     try {
-        // Pastikan sentimentResults adalah array dengan struktur yang benar
+        /* Pastikan sentimentResults adalah array dengan struktur yang benar */
         if (!Array.isArray(sentimentResults) || sentimentResults.length === 0 || !Array.isArray(sentimentResults[0])) {
             return staticReviews;
         }
 
-        // Find the sentiment result with the highest score
+        /* Find the sentiment result with the highest score */
         const labelWithHighestScore = sentimentResults.map(result => {
             return result.reduce((prev, current) => {
                 return (current.score > prev.score) ? current : prev;
             });
         });
 
-        // Find the index of the candidate with the negative label
-        // Mencari nilai yang mengandung label negative
+        /* Find the index of the candidate with the negative label and neutral label*/
+        /* Mencari nilai yang mengandung label negative dan label neutral */
         const lowestScoreIndex = labelWithHighestScore.findIndex(
             item => item.label === "negative" || item.label === "neutral"
         );
@@ -273,7 +275,6 @@ const getReviews = async (req, res) => {
             if (results.length === 0) {
                 continueProcessing = false;
                 // res.json("No more candidates to analyze.");
-                // return res.json(JSON.parse(reviewsJSON)); /* convert data dari JSON kembali ke objek JavaScript */
                 return res.status(200).json(JSON.parse(reviewsJSON)); /* convert data dari JSON kembali ke objek JavaScript */
             }
 
@@ -307,19 +308,20 @@ const getReviews = async (req, res) => {
         } else if (dataToSend.length >= 1) {
             subsetOfData = dataToSend.slice(0, 1);
         } else if (dataToSend.length <= 0) {
-            // subsetOfData = dataToSend;
             subsetOfData = JSON.parse(reviewsJSON);
         }
 
-        // res.json(subsetOfData);
         res.status(200).json(subsetOfData);
         // console.log(dataToSend.length);
     } catch (error) {
         console.error("Error get Reviews:", error);
         return res.json(JSON.parse(reviewsJSON)); /* convert data dari JSON kembali ke objek JavaScript */
-        // throw error;
     }
 };
+
+
+// The mark is to disable the code line
+/* The mark is to provide info related to the code explanation */
 
 module.exports = {
     validateEmailReview,
